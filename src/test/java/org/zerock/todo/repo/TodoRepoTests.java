@@ -11,6 +11,7 @@ import org.zerock.todo.domain.Todo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -21,6 +22,7 @@ public class TodoRepoTests {
     private TodoRepository todoRepository;
 
     @Test
+    @Commit
     public void addDummies() {
 
         IntStream.range(1,101).forEach(i -> {
@@ -37,6 +39,12 @@ public class TodoRepoTests {
     public void selectOne(){
         Todo todo = todoRepository.findById(99).get();
         log.info(""+todo);
+    }
+
+    @Test
+    public void selectAll(){
+        List<Todo> todos = todoRepository.findAll();
+        log.info(""+todos);
     }
 
 
